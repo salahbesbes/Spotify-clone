@@ -2,6 +2,7 @@ import React from "react";
 import "../Css/Login.css";
 import {loginUrl} from "../Utils/auth";
 const Login = () => {
+  console.log('loginUrl', loginUrl)
   return (
     <div className="login">
       <img

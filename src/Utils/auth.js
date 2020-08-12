@@ -1,7 +1,7 @@
 let authEndPoint = "https://accounts.spotify.com/authorize";
 let clientId = "73977a6c95a146a8b2b6b0342e4e8992";
 let redirectUri = "http://localhost:3000/";
-let redirectProduction = "https://spotify-clone-570c5.web.app"
+let redirectProduction = "http://spotify-clone-d2fa3.web.app/"
 // give permition to do some stuff
 let scopes = [
   "user-read-playback-state",
@@ -20,7 +20,7 @@ export const loginUrl = `${authEndPoint}?response_type=token
 &redirect_uri=${redirectProduction}
 &show_dialog=true
 &scope=${scopes.join("%20")}`;
-
+console.log('loginUrl', loginUrl)
 export const getTokenFromUrl = () => {
 // we are pulling the access token 
   return window.location.hash
