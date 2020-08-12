@@ -11,7 +11,7 @@ let scopes = [
 ];
 // 1. click login button
 // 2. redirect to spotify login page
-// 3. redirect to home page once aithorized
+// 3. redirect to home page once authorized
 
 //https://developer.spotify.com/documentation/general/guides/authorization-guide/
 export const loginUrl = `${authEndPoint}?response_type=token

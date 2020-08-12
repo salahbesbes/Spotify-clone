@@ -1,45 +1,41 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import "./Css/App.css";
-import Login from "./Login";
-import {getTokenFromUrl} from "./auth";
-import spotifyWebApi from "spotify-web-api-js";
-import Player from "./Player";
+import Login from "./Components/Login";
+import Player from "./Components/Player";
+import {connect} from "react-redux";
+import {SetUser, GetPlaylists, GetSongs, DiscoverWeekly} from "./R-Action";
 
-const spotify = new spotifyWebApi();
-
-function App() {
-  const [token, setToken] = useState("");
-
+function App({token, user, DiscoverWeekly, SetUser, GetSongs, GetPlaylists}) {
   useEffect(() => {
-    //  we are connecting spotidy to react
-    const _token = getTokenFromUrl().access_token;
-    _token && setToken(_token);
-    // give the token to the spotify we just create
-    spotify.setAccessToken(_token);
-    // we get the user acount
-    spotify
-      .getMe()
-      .then(user => {
-        console.log("user", user);
-      })
-      .catch(err => {
-        console.log("err", err);
-      });
-  }, []);
-
+    SetUser();
+    GetPlaylists();
+    GetSongs("0Hl29zIkBKhHWjHB81dsxv");
+    DiscoverWeekly();
+  }, [SetUser, GetPlaylists, GetSongs, DiscoverWeekly]);
   return (
     <div className="App">
       {token ? (
         <div>
-          <Player/>
+          <Player />
         </div>
       ) : (
-        <div><Login/> </div>
+        <div>
+          <Login />{" "}
+        </div>
       )}
-
-      
     </div>
   );
 }
 
-export default App;
+const mapstatetoprops = state => {
+  return {
+    user: state.user,
+    token: state.token,
+  };
+};
+export default connect(mapstatetoprops, {
+  DiscoverWeekly,
+  GetSongs,
+  SetUser,
+  GetPlaylists,
+})(App);
