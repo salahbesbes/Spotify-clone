@@ -1,6 +1,7 @@
 let authEndPoint = "https://accounts.spotify.com/authorize";
 let clientId = "73977a6c95a146a8b2b6b0342e4e8992";
 let redirectUri = "http://localhost:3000/";
+let redirectProduction = "https://spotify-clone-570c5.web.app"
 // give permition to do some stuff
 let scopes = [
   "user-read-playback-state",
@@ -16,7 +17,7 @@ let scopes = [
 //https://developer.spotify.com/documentation/general/guides/authorization-guide/
 export const loginUrl = `${authEndPoint}?response_type=token
 &client_id=${clientId}
-&redirect_uri=${redirectUri}
+&redirect_uri=${redirectProduction}
 &show_dialog=true
 &scope=${scopes.join("%20")}`;
 

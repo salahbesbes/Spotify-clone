@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./Css/App.css";
 import Login from "./Components/Login";
 import Player from "./Components/Player";
-import {connect} from "react-redux";
-import {SetUser, GetPlaylists, GetSongs, DiscoverWeekly} from "./R-Action";
+import { connect } from "react-redux";
+import { SetUser, GetPlaylists, GetSongs, DiscoverWeekly } from "./R-Action";
 
-function App({token, user, DiscoverWeekly, SetUser, GetSongs, GetPlaylists}) {
+function App({ token, DiscoverWeekly, SetUser, GetSongs, GetPlaylists }) {
   useEffect(() => {
     SetUser();
     GetPlaylists();
@@ -20,7 +20,7 @@ function App({token, user, DiscoverWeekly, SetUser, GetSongs, GetPlaylists}) {
         </div>
       ) : (
         <div>
-          <Login />{" "}
+          <Login />
         </div>
       )}
     </div>
@@ -29,7 +29,6 @@ function App({token, user, DiscoverWeekly, SetUser, GetSongs, GetPlaylists}) {
 
 const mapstatetoprops = state => {
   return {
-    user: state.user,
     token: state.token,
   };
 };
